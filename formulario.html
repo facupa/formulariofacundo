@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            background-color: #f4f4f4;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* Agrego el Estilo para el botón de contraste */
+        .contrast-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .contrast-toggle-checkbox {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .contrast-toggle-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            user-select: none;
+        }
+        .contrast-toggle-button:hover {
+            background-color: #555;
+        }
+
+        /* Este es el Estilos de alto contraste de la pagina */
+        #contrast-toggle:checked + .container {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        #contrast-toggle:checked + .container body{
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.05em;
+        }
+
+        #contrast-toggle:checked + .container form {
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+        #contrast-toggle:checked + .container label {
+            color: #e0e0e0;
+        }
+        #contrast-toggle:checked + .container input,
+        #contrast-toggle:checked + .container select {
+            background-color: #333;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+        #contrast-toggle:checked + .container input::placeholder {
+            color: #bbb;
+        }
+        #contrast-toggle:checked + .container input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+        }
+        #contrast-toggle:checked + .container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #contrast-toggle:checked + .container .contrast-toggle-button {
+            background-color: #e0e0e0;
+            color: #121212;
+        }
+        #contrast-toggle:checked + .container .contrast-toggle-button:hover {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="contrast-toggle" class="contrast-toggle-checkbox" role="switch">
+    <div class="container">
+        <div class="contrast-toggle">
+            <label for="contrast-toggle" class="contrast-toggle-button">Cambiar Contraste</label>
+        </div>
+
+        <form action="#" method="post">
+            <h2>Formulario de Datos Personales</h2>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                <div id="error-fecha" aria-live="assertive" style="color: red; margin-top: 5px;"></div>
+            </div>
+<!-- usamos alia-live para que el error sea accesible para lector de pantalla luego de ingresar una fecha invalida -->
+            <script src="script.js"></script>
+
+            <div class="form-group">
+                <label for="pais">País de Residencia:</label>
+                <select id="pais" name="pais">
+                    <option value="">Selecciona un país</option>
+                    <option value="argentina">Argentina</option>
+                    <option value="chile">Chile</option>
+                    <option value="colombia">Colombia</option>
+                    <option value="españa">España</option>
+                    <option value="mexico">México</option>
+                    <option value="peru">Perú</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
